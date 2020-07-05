@@ -1,5 +1,5 @@
 
-function GenerateCounterChart(element) {
+function GenerateCounterChart(element, showSource = false) {
     const data = document.getElementById("DataInput").value;
     const lines = data.split(/\r?\n/);
     const counters = {};
@@ -29,9 +29,9 @@ function GenerateCounterChart(element) {
     output += "</tr></thread><tbody>";
 
     for (const damageType in counters) {
-        output += `<tr class='tableHeaders'><td class="damageHeader">${damageType}</td>`;
+        output += `<tr class='tableHeaders'><td class="damageHeader" title="${GetWeaponShips(damageType)}">${damageType}</td>`;
         for (const armorType in counters[damageType]) {
-            output += `<td class=${GetCellClass(counters[damageType][armorType])}>${counters[damageType][armorType]}</td>`
+            output += `<td class=${GetCellClass(counters[damageType][armorType])} title="${GetWeaponShips(damageType)} VS ${GetArmorShips(armorType)}">${counters[damageType][armorType]}</td>`
         }
         output += "</tr>"
     }
@@ -39,7 +39,12 @@ function GenerateCounterChart(element) {
     output += "</tbody></table>"
 
     const resultElement = document.getElementById("Results");
-    resultElement.innerHTML = output;
+    if (showSource) {
+        resultElement.innerText = output;
+    }
+    else {
+        resultElement.innerHTML = output;
+    }
 }
 
 function GetCellClass(damageMultiplier) {
@@ -82,5 +87,34 @@ function GetArmorShips(armorType) {
             return "All Titans";
         default:
             return "";
+    }
+}
+
+function GetWeaponShips(weaponType) {
+    switch(weaponType) {
+        case "ANTIVERYLIGHT":
+            return "Antifighter Frigates";
+        case "ANTILIGHT":
+            return "Fighters, Scout Frigates";
+        case "ANTIMEDIUM":
+            return "Long Range Frigates";
+        case "ANTIHEAVY":
+            return "Light and Siege Frigates, Support Cruisers";
+        case "ANTIVERYHEAVY":
+            return "Bombers";
+        case "ANTIMODULE":
+            return "Antimodule Cruisers";      
+        case "COMPOSITE":
+            return "Heavy Cruisers";
+        case "CAPITALSHIP":
+            return "All Capitalships, Starbases, Turrets";
+        case "CAPITALABILITY":
+            return "Ability Damage";
+        case "TITAN":
+            return "All Titans";
+        case "CORVETTE":
+            return "Corvettes";
+        default:
+            return "";                                                                         
     }
 }

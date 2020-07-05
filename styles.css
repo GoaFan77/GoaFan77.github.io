@@ -75,8 +75,7 @@ textarea{
     padding: 0 5vw;
 }
 
-#Submit {
-    display: block;
+.actionButton {
     margin: 0 auto;
     background: #52809A linear-gradient(white, #52809A);
     font-size: 16px;
@@ -121,4 +120,8 @@ td:hover {
 
 footer {
     text-align: center;
+}
+
+.hidden {
+    display: none;
 }
