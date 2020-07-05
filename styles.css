@@ -118,3 +118,7 @@ textarea{
 td:hover {
     filter: brightness(150%);
 }
+
+footer {
+    text-align: center;
+}
