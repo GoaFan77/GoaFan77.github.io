@@ -1,0 +1,120 @@
+body {
+    background: linear-gradient(to bottom, #181818 0%, #000000 100%);
+    color: #82b0cA;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header {
+    text-align: center;
+    background-image: url("SinsBackground.jpg");
+    background-color: rgba(128, 128, 128, 0.5);
+    border-bottom: 2px solid white;
+    box-shadow: 0 0 10px #52809A;
+    padding: 100px 0px 20px 0px; 
+    font-size: 24px;
+}
+
+.gradientText {
+    background: linear-gradient(white, #52809A);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.weak {
+    background: darkred linear-gradient(red, darkred);
+    color: white;
+    border: 1px solid black;
+}
+
+.average {
+    background: gold linear-gradient(yellow, gold);
+    border: 1px solid black;
+}
+
+.good {
+    background: lime linear-gradient(lime, green);
+    border: 1px solid black; 
+}
+
+.great {
+    background: DeepSkyBlue linear-gradient(DodgerBlue, blue);
+    color: white;
+    font-weight: bold;
+    border: 1px solid black; 
+}
+
+.excellent {
+    background: purple linear-gradient(purple, Indigo);
+    color: white;
+    font-weight: bold;
+    border: 1px solid black;   
+}
+
+#DataInput{
+    width: 100%;
+    height: 500px;
+}
+
+textarea{
+    background: grey linear-gradient(#333333, #555555);
+    color: yellow;
+    border: 1px solid silver;
+    box-shadow: 0 0 5px silver;
+}
+
+.buttonBar{
+    display: inline-block;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+#MainDiv {
+    padding: 0 5vw;
+}
+
+#Submit {
+    display: block;
+    margin: 0 auto;
+    background: #52809A linear-gradient(white, #52809A);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.tableHeaders {
+    color: black;
+    background: #52809A linear-gradient(white, #52809A);
+}
+
+.armorHeader {
+    border-bottom: 2px solid black;
+}
+
+.damageHeader {
+    border-right: 2px solid black;
+    border-bottom: 1px solid black;
+    background: #52809A linear-gradient(90deg, white, #52809A);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.caption {
+    color: black;
+    background: #52809A linear-gradient(#52809A, white);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.resultTable {
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid silver;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+td:hover {
+    filter: brightness(150%);
+}
