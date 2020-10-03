@@ -1,0 +1,164 @@
+<head>
+    <title>Sins of a Solar Empire Counter Chart Generator</title>
+    <link href="styles.css" rel="stylesheet"></link>   
+    <meta charset="utf-8">
+</head>
+<body onload="Initialize()">
+    <header>
+        <h1 class="gradientText">Enhanced 4X Mod/Star Wars Interregnum</h1>
+        <h1 class="gradientText">Mod Configuration Manager</h1>
+    </header>
+    <div id="MainDiv">
+        <p>
+            This page will generate the EnabledMods.txt file for the Enhanced 4X Mod and/or Star Wars: Interregnum.
+            Simply select which mod and minimods you want to use, and it will take care of the rest.
+        </p>
+        <h3>Step 1: First select your main mod.</h3>
+        <div class="controlGrid">
+            <div>
+                <input type="radio" name="MainMod" id="MainModE4X" data-mod-name="Enhanced 4X Mod 1.86" data-mod-priority="0" value="E4X" onclick="UpdateMainMod()"/>
+                <label for="MainModE4X" title="Select Enhanced 4X only if you are not also using Interregnum.">Enhanced 4X Mod</label>
+            </div>
+            <div>
+                <input type="radio" name="MainMod" id="MainModINT" value="INT" data-mod-name="Star Wars Interregnum Beta 1" data-mod-priority="1" onclick="UpdateMainMod()"/>
+                <label for="MainModINT" title="Select Interregnum if you are using E4X and Interregnum together.">Star Wars: Interregnum</label>
+            </div>
+        </div>
+        <h3>Step 2: Select which Gameplay Minimods you wish to use, if any.</h3>
+        <div class="controlGrid">
+            <div>
+                <input type="checkbox" id="DoubledFleetSupply" data-mod-name="E4X Doubled Fleet Supply and Capitalships" data-mod-priority="10" data-mods="INT&E4X" />
+                <label for="DoubledFleetSupply" title="Allows you to have twice as many ships and capitalships at any particular research level. Note that this will certainly make any performance issues worse, especially on maps with lots of players.">Doubled Fleet Supply and Capitalships</label>
+            </div>
+            <div>
+                <input type="checkbox" id="Deathmatch" data-mod-name="PFX Deathmatch Mode" data-mods="INT&E4X" data-mod-priority="20" data-incompatible-mods="Beskar"/>
+                <label for="Deathmatch" title="Increases the influence of the map fleet supply, income, build time, and research options. Usually slow is equal to the old normal, normal the old faster, and fast and faster are much higher than what was previously available. Best for small and medium sized maps, as this allows you to afford to use every weapon at your disposal. Note that this mod and Doubled Fleet Supply will combine to further increase your maximum fleet size.">Deathmatch</label>
+            </div>
+            <div>
+                <input type="checkbox" id="FasterCombat" data-mod-name="PFX Faster combat" data-mod-priority="10" data-mods="INT&E4X" />
+                <label for="FasterCombat" title="Increases all weapon damage by 50%. Works well with Deathmatch, or if you just wish Sins combat was faster like other RTS games.">Faster Combat</label>
+            </div>
+            <div>
+                <input type="checkbox" id="ExpandedResearch" data-mod-name="E4X Expanded Research" data-mod-priority="10" data-mods="INT&E4X" />
+                <label for="ExpandedResearch" title="Inspired by mods like Mad Scientist and Distant Stars, the Expanded Research minimod doubles the amount of most stat increasing research available. For example, the TEC Laser research will go from having two techs with 2 levels each for a max 20% damage bonus to having 2 techs with 4 levels each for a max 40% damage bonus.">Expanded Research</label>
+            </div>
+            <div>
+                <input type="checkbox" id="InfiniteResearch" data-mod-name="E4X Infinite Research" data-mod-priority="10" data-mods="INT&E4X" />
+                <label for="InfiniteResearch" title="Adds two new techs, Surviveability Mastery and Weapon Mastery, that slightly increases your units stats but can be researched 999 times. These techs get more expensive with each research. This minimod is intended as a money sink for long games on huge maps where the major empires can easily run out of things to spend resources on.">Infinite Research</label>
+            </div>    
+            <div>
+                <input type="checkbox" id="ResetTitanLevels" data-mod-name="PFX Resetting Titan Levels" data-mod-priority="10" data-mods="INT&E4X" />
+                <label for="ResetTitanLevels" title="It's a little crude, but the result is titans will lose their levels on being destroyed, so they are always rebuilt at level 1. This was a major gripe of some who thought titans were too strong, and works especially well on larger maps.">Resetting Titan Levels</label>
+            </div>
+            <div>
+                <input type="checkbox" id="nonVasariPhaseGate" data-mod-name="E4X Non-Vasari Phase Gate" data-mod-priority="10" data-mods="INT&E4X" />
+                <label for="nonVasariPhaseGate" title="Allows factions other than the Vasari build phase gates to warp between all connected planets, but at a much higher cost.">non-Vasari Phase Gate</label>
+            </div>            
+            <div>
+                <input type="checkbox" id="MaxStarbaseUpgrades" data-mod-name="E4X Max Starbase Upgrades" data-mod-priority="10" data-mods="INT&E4X" />
+                <label for="MaxStarbaseUpgrades" title="Gives all Starbases 20 upgrade slots, enough to purchase all available upgrades for them.">Max Starbase Upgrades</label>
+            </div>
+            <div>
+                <input type="checkbox" id="EnhancedAI" data-mod-name="E4X Enhanced AI" data-mod-priority="10" data-mods="INT&E4X" />
+                <label for="EnhancedAI" title="Gives your favorite AI level a little more challenge without it feeling more &quot;Cheaty&quot;.">Enhanced AI</label>
+            </div>
+            <div>
+                <input type="checkbox" id="ExplodingMines" data-mod-name="E4X Exploding Mines" data-mod-priority="10" data-mods="INT&E4X" />
+                <label for="ExplodingMines" title="Reverts space mines to explode when enemy targets are in range, rather than dealing damage over time. However, the mine limits have no been changed, so mines are still more expensive, have longer range, and now do devastating damage to make up for the limited numbers of them.">Exploding Mines</label>
+            </div>
+            <div>
+                <input type="checkbox" id="MoreTacticalSlots" data-mod-name="E4X More Tactical Slots" data-mod-priority="10" data-mods="INT&E4X" />
+                <label for="MoreTacticalSlots" title="Increases the number of tactical slots at all planets by 10.">More Tactical Slots</label>
+            </div>
+            <div>
+                <input type="checkbox" id="DisableTitans" data-mod-name="E4X Disable Titans" data-mod-priority="10" data-mods="INT&E4X" />
+                <label for="DisableTitans" title="Prevents you and the AI from building titans.">Disable Titans</label>
+            </div>
+            <div>
+                <input type="checkbox" id="DisableHeroes" data-mod-name="E4X Disable Heroes" data-mod-priority="10" data-mods="INT&E4X" />
+                <label for="DisableTitans" title="Prevents you and the AI from recruiting heroes.">Disable Heroes</label>
+            </div>
+            <div>
+                <input type="checkbox" id="DisableTEC" data-mod-name="E4X Disable TEC" data-mod-priority="10" data-mods="INT&E4X" />
+                <label for="DisableTEC" title="Prevents the TEC faction from being played. It will not change random encounters, so you may see a few TEC ships owned by minor factions.">Disable TEC</label>
+            </div>
+            <div>
+                <input type="checkbox" id="DisableHTS" data-mod-name="E4X Disable HTS" data-mod-priority="10" data-mods="INT&E4X" />
+                <label for="DisableHTS" title="Prevents the HTS faction from being played. It will not change random encounters, so you may see a few HTS ships owned by minor factions.">Disable HTS</label>
+            </div>   
+            <div>
+                <input type="checkbox" id="DisableOrthodox" data-mod-name="E4X Disable Orthodox" data-mod-priority="10" data-mods="INT&E4X" />
+                <label for="DisableOrthodox" title="Prevents the Orthodox faction from being played. It will not change random encounters, so you may see a few Orthodox ships owned by minor factions.">Disable Orthodox</label>
+            </div>
+            <div>
+                <input type="checkbox" id="DisableAscended" data-mod-name="E4X Disable Ascended" data-mod-priority="10" data-mods="INT&E4X" />
+                <label for="DisableAscended" title="Prevents the Ascended faction from being played. It will not change random encounters, so you may see a few Ascendedships owned by minor factions.">Disable Ascended</label>
+            </div>    
+            <div>
+                <input type="checkbox" id="DisableVCC" data-mod-name="E4X Disable VCC" data-mod-priority="10" data-mods="INT&E4X" />
+                <label for="DisableVCC" title="Prevents the VCC faction from being played. It will not change random encounters, so you may see a few VCC ships owned by minor factions.">Disable VCC</label>
+            </div>    
+            <div>
+                <input type="checkbox" id="DisableVIR" data-mod-name="E4X Disable VIR" data-mod-priority="10" data-mods="INT&E4X" />
+                <label for="DisableVIR" title="Prevents the VIR faction from being played. It will not change random encounters, so you may see a few VIR ships owned by minor factions.">Disable VIR</label>
+            </div>
+            <div>
+                <input type="checkbox" id="AllE4XEncounters" data-mod-name="INT All E4X Random Encounters" data-mod-priority="11" data-mods="INT" />
+                <label for="AllE4XEncounters" title="If you want more non-Star Wars content in your game, you can use this minimod. Interregnum disables a few E4X random encounters and vanilla minor factions since they have been replaced with Star Wars versions. This minimod adds them back in. You can see a full list in the minimod readme.">All E4X Random Encounters</label>
+            </div>
+            <div>
+                <input type="checkbox" id="Beskar" data-mod-name="INT Beskar" data-mods="INT" data-mod-priority="20" data-incompatible-mods="Deathmatch"/>
+                <label for="Beskar" title="This special minimod increases the difficulty of the Mandalorian Raiders, to the point that they feel more like a proper hostile faction. Mandalorian Raids will become more deadly and frequent, and the Mandalorians will even colonize any worlds they conquer and turn them to a local base of operations. Not recommended for new players or weak AI difficulties.">Beskar</label>
+            </div>
+            <div>
+                <input type="checkbox" id="LendLease" data-mod-name="INT Lend-Lease Capitals" data-mod-priority="10" data-mods="INT" data-incompatible-mods="Deathmatch"/>
+                <label for="LendLease" title="Lend Lease Capitals modifies the extra capitalship the Triple Alliance factions (TEC, Ascended Advent, VIR) get. They will now use the weapon types and fighter squadrons of your faction, so your weapon upgrades will benefit these foreign built capitalships.">Lend-Lease Capitals</label>
+            </div>
+            <div>
+                <input type="checkbox" id="DisableVanillaFactions" data-mod-name="INT Disable Vanilla Factions" data-mod-priority="10" data-mods="INT" />
+                <label for="DisableVanillaFactions" title="Relive Star Wars battles from before the Interregnum with this add on, which prevents the vanilla Sins factions from being played. It will not change random encounters, so you may see a few vanilla ships owned by minor factions.">Disable Vanilla Factions</label>
+            </div>
+            <div>
+                <input type="checkbox" id="DisableEmpire" data-mod-name="INT Disable Empire" data-mod-priority="10" data-mods="INT" />
+                <label for="DisableEmpire" title="Prevents the Empire faction from being played. It will not change random encounters, so you may see a few Imperial ships owned by minor factions.">Disable Empire</label>
+            </div>
+            <div>
+                <input type="checkbox" id="DisableWarlords" data-mod-name="INT Disable Warlords" data-mod-priority="10" data-mods="INT" />
+                <label for="DisableWarlords" title="Prevents the Warlords faction from being played. It will not change random encounters, so you may see a few Warlord ships owned by minor factions.">Disable Warlords</label>
+            </div>
+            <div>
+                <input type="checkbox" id="DisableRebels" data-mod-name="INT Disable Rebel Alliance" data-mod-priority="10" data-mods="INT" />
+                <label for="DisableRebels" title="Prevents the Rebel faction from being played. It will not change random encounters, so you may see a few Rebel ships owned by minor factions.">Disable Rebel Alliance</label>
+            </div>
+            <div>
+                <input type="checkbox" id="DisableNewRepublic" data-mod-name="INT Disable New Republic" data-mod-priority="10" data-mods="INT" />
+                <label for="DisableNewRepublic" title="Prevents the New Republic faction from being played. It will not change random encounters, so you may see a few New Republic ships owned by minor factions.">Disable New Republic</label>
+            </div>
+        </div>
+        <h3>Step 3: Select which Graphics Mods you wish to use, if any. Note: <a href="https://www.moddb.com/mods/sinsre">Sins: Remastered</a> requires a separate download if you wish to use it.</h3>
+        <div class="controlGrid">
+            <div>
+                <input type="checkbox" id="Bailknight" data-mod-name="E4X BGM Enhanced Graphics" data-mod-priority="11" data-mods="INT&E4X" />
+                <label for="Bailknight" title="This mini-mod incorporates the changes found in Bailknight's Graphics Mod into E4X, including texture, particle, and effect overhauls.">BGM Enhanced Graphics</label>
+            </div>
+            <div>
+                <input type="checkbox" id="SinsRE" data-mod-name="SinsRemastered-v0.94b|E4X SinsRe|INT SinsRe" data-mod-priority="-1|2|3" data-mods="INT&E4X|INT&E4X|INT" />
+                <label for="SinsRE" title="Sins: Remastered is a graphical update mod for Sins of a Solar Empire: Rebellion. It includes new PBR shaders and revised textures of stock game assets to work with those new shaders. The end result is a modern rendering style and a new look to an old game.">Sins: Remastered</label>
+            </div>
+        </div>
+        <div class="buttonBar">
+            <button id="CopyClipboard" class="actionButton" type="button" onclick="CopyClipboard()">Copy to Clipboard</button>
+            <button id="Save" class="actionButton" type="button" onclick="DownloadEnabledMods()">Save EnabledMods</button>
+        </div>
+        <hr />
+        <pre id="Results">
+    
+        </pre>
+    </div>        
+    <footer>
+        <hr />
+        Created by GoaFan77
+    </footer>
+    <script src="http://cdn.jsdelivr.net/g/filesaver.js"></script>
+    <script src="E4XInterregnumModManager.js"></script>
+</body>

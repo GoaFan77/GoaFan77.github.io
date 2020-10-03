@@ -123,5 +123,12 @@ footer {
 }
 
 .hidden {
-    display: none;
+    display: none;   
+}
+
+.controlGrid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: 10px;
+    row-gap: 1em;
 }
