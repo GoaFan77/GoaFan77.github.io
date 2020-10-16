@@ -15,6 +15,9 @@ function UpdateMainMod() {
             mod.parentNode.style.visibility = "visible";
         }
     });
+
+    // Set the header background.
+    document.getElementsByTagName("header")[0].className = "header" + selectedMod;
 }
 
 function GenerateModOrder() {
