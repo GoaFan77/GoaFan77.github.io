@@ -21,6 +21,7 @@ function UpdateMainMod() {
 }
 
 function GenerateModOrder() {
+    ResetErrors();
     const E4X = document.getElementById("MainModE4X");
 
     // Start by adding the main mods to the list.
@@ -48,6 +49,7 @@ function GenerateModOrder() {
         else {
             selectedMods.push({priority: mod.dataset.modPriority, name: mod.dataset.modName.replace('PFX', mainMod)});
         }
+        ShowIncompatibleMods(mod);
     });
 
     // Sort mods by priority in descending order. Mods with higher priority are printed first.
@@ -63,6 +65,23 @@ function GenerateModOrder() {
     });
 
     document.getElementById("Results").innerHTML = modOrder;
+}
+
+function ShowIncompatibleMods(mod) {
+    if (mod.dataset.incompatibleMods) {
+        mod.dataset.incompatibleMods.split('|').forEach(incompatibleMod => {
+            const incompatibleModElement = document.getElementById(incompatibleMod).labels[0];
+            incompatibleModElement.className = "error";
+            incompatibleModElement.title = "This mod is incompatible with " + mod.id + ". Some features may not work correctly if you use these mods together."
+        });
+    }
+}
+
+function ResetErrors() {
+    const errors = document.querySelectorAll(".error");
+    errors.forEach(error => {
+        error.classList.remove("error");
+    });
 }
 
 function CopyClipboard() {

@@ -141,3 +141,7 @@ footer {
     column-gap: 10px;
     row-gap: 1em;
 }
+
+.error {
+    color: red;
+}
