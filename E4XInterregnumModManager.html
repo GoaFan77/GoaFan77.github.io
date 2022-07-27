@@ -25,11 +25,11 @@
         <h3>Step 1: First select your main mod.</h3>
         <div class="controlGrid">
             <div>
-                <input type="radio" name="MainMod" id="MainModE4X" data-mod-name="Enhanced 4X Mod 1.86" data-mod-priority="0" value="E4X" onclick="UpdateMainMod()"/>
+                <input type="radio" name="MainMod" id="MainModE4X" data-mod-name="Enhanced 4X Mod 1.87" data-mod-priority="0" value="E4X" onclick="UpdateMainMod()"/>
                 <label for="MainModE4X" title="Select Enhanced 4X only if you are not also using Interregnum.">Enhanced 4X Mod</label>
             </div>
             <div>
-                <input type="radio" name="MainMod" id="MainModINT" value="INT" data-mod-name="Star Wars Interregnum Beta 1" data-mod-priority="1" onclick="UpdateMainMod()"/>
+                <input type="radio" name="MainMod" id="MainModINT" value="INT" data-mod-name="Star Wars Interregnum Beta 2" data-mod-priority="1" onclick="UpdateMainMod()"/>
                 <label for="MainModINT" title="Select Interregnum if you are using E4X and Interregnum together.">Star Wars: Interregnum</label>
             </div>
         </div>
@@ -75,6 +75,10 @@
                 <input type="checkbox" id="ExplodingMines" data-mod-name="E4X Exploding Mines" data-mod-priority="10" data-mods="INT&E4X" />
                 <label for="ExplodingMines" title="Reverts space mines to explode when enemy targets are in range, rather than dealing damage over time. However, the mine limits have no been changed, so mines are still more expensive, have longer range, and now do devastating damage to make up for the limited numbers of them.">Exploding Mines</label>
             </div>
+            <div>
+                <input type="checkbox" id="ExploredMap" data-mod-name="E4X Explored Map" data-mod-priority="10" data-mods="INT&E4X" />
+                <label for="ExplodingMines" title="Fully reveals the map at the start of the game, showing all planets and player starting locations.">Explored Map</label>
+            </div>            
             <div>
                 <input type="checkbox" id="MoreTacticalSlots" data-mod-name="E4X More Tactical Slots" data-mod-priority="10" data-mods="INT&E4X" />
                 <label for="MoreTacticalSlots" title="Increases the number of tactical slots at all planets by 10.">More Tactical Slots</label>
