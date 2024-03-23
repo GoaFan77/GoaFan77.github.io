@@ -57,7 +57,7 @@ function GenerateModOrder() {
 
     // Build the EnabledMods text.
     let modOrder = "TXT2\n"
-    modOrder += "SinsArchiveVersion 197\n"
+    modOrder += "SinsArchiveVersion 198\n"
     modOrder += "Version 0\n"
     modOrder += "enabledModNameCount " + selectedMods.length + "\n";
     selectedMods.forEach(mod => {
